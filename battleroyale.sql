@@ -16,24 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `admins`
+-- Table structure for table `players`
 --
 
-DROP TABLE IF EXISTS `admins`;
+DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `admins` (
+CREATE TABLE `players` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `player` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `player` varchar(36) COLLATE utf8mb4_general_ci NOT NULL,
   `role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'player',
   `vip` int NOT NULL DEFAULT '0',
   `tas` int NOT NULL DEFAULT '0',
-  `ip` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ip` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(36) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `admins_UN` (`player`)
-) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `players_UN` (`player`)
+) ENGINE=InnoDB AUTO_INCREMENT=1746 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

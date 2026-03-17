@@ -4,8 +4,8 @@
 start()
 {
 	printLn("^5===================================");
-	printLn("^5SR Mod (c) Iswenzz 2016-2023");
-	printLn("^5iswenzz.com");
+	printLn("^5SR Mod (c) Iswenzz");
+	printLn("^5iswenzz.com" );
 	printLn("^5===================================");
 
 	level.script = toLower(getDvar("mapname"));
