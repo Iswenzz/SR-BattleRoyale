@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `ranks`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ranks` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `player` varchar(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `player` varchar(36) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `name` varchar(36) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `xp` int NOT NULL,
   `level` int NOT NULL,
