@@ -5,10 +5,10 @@
 
 main()
 {
-	cmd("owner", "br_origin", ::cmd_Origin);
-	cmd("owner", "br_origin_api", ::cmd_OriginAPI);
-	cmd("owner", "br_weapons", ::cmd_Weapons);
-	cmd("owner", "br_weapons_teleport", ::cmd_WeaponsTeleport);
+	cmd("br_origin_random",    "owner", ::cmd_OriginRandom,    "Save the current position into the origin file and assign a random item");
+	cmd("br_origin",           "owner", ::cmd_Origin,          "Save the current position into the origin file");
+	cmd("br_weapons_teleport", "owner", ::cmd_WeaponsTeleport, "Teleport to each weapons");
+	cmd("br_weapons",          "owner", ::cmd_Weapons,         "Display the number of weapons");
 }
 
 cmd_Origin(args)
@@ -25,10 +25,10 @@ cmd_Origin(args)
 	self pm(fmt("Saved origin: ^5%d %d %d", x, y, z));
 }
 
-cmd_OriginAPI(args)
+cmd_OriginRandom(args)
 {
 	if (args.size < 1)
-		return self pm("Usage: br_origin_api <type>");
+		return self pm("Usage: br_origin_random <type>");
 
 	type = args[0];
 
