@@ -24,19 +24,19 @@ main()
 	setDvar("r_glowbloomintensity1", "0.1");
 	setDvar("r_glowskybleedintensity0", "0.1");
 
-	battleroyale\game\_api::createPlaneDrop((-1008, -6207, 7021));
-	battleroyale\game\_api::createPlaneDuration(40);
+	sr\api\_battleroyale::createPlaneDrop((-1008, -6207, 7021));
+	sr\api\_battleroyale::createPlaneDuration(40);
 
-	battleroyale\game\_api::createZoneLevels(0);
-	battleroyale\game\_api::createZone((-2174, -3553, -1094));
-	battleroyale\game\_api::createZone((1004, -7828, -815));
-	battleroyale\game\_api::createZone((-2672, -13285, -2506));
-	battleroyale\game\_api::createZone((273, 1156, -1358));
-	battleroyale\game\_api::createZone((-11199, -6826, -3097));
-	battleroyale\game\_api::createZone((-20439, -11104, -4304));
-	battleroyale\game\_api::createZone((-13530, -1321, -3120));
-	battleroyale\game\_api::createZone((7891, -2131, -1258));
-	battleroyale\game\_api::createZone((7724, 6727, -1490));
+	sr\api\_battleroyale::createZoneLevels(0);
+	sr\api\_battleroyale::createZone((-2174, -3553, -1094));
+	sr\api\_battleroyale::createZone((1004, -7828, -815));
+	sr\api\_battleroyale::createZone((-2672, -13285, -2506));
+	sr\api\_battleroyale::createZone((273, 1156, -1358));
+	sr\api\_battleroyale::createZone((-11199, -6826, -3097));
+	sr\api\_battleroyale::createZone((-20439, -11104, -4304));
+	sr\api\_battleroyale::createZone((-13530, -1321, -3120));
+	sr\api\_battleroyale::createZone((7891, -2131, -1258));
+	sr\api\_battleroyale::createZone((7724, 6727, -1490));
 
 	thread onPlayerConnected();
 

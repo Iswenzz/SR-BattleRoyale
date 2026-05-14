@@ -1,6 +1,6 @@
 # SR BattleRoyale
 
-[![License](https://img.shields.io/github/license/Iswenzz/CoD4-BattleRoyale?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/CoD4-BattleRoyale/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Iswenzz/SR-BattleRoyale?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/SR-BattleRoyale/blob/master/LICENSE)
 
 ![](https://i.imgur.com/HOTSmrJ.png)
 
@@ -12,14 +12,21 @@ This mod comes with it's own custom map called, ``MP_BR_BLACKOUT``, which is des
 
 ## Documentation
 * [API](https://github.com/Iswenzz/SR-Dev/blob/master/docs/battleroyale.md)
-* [Example](https://github.com/Iswenzz/CoD4-Battleroyale/blob/master/maps/mp/mp_creek.gsc)
+* [Example](https://github.com/Iswenzz/SR-BattleRoyale/blob/master/maps/mp/mp_creek.gsc)
 
-## Instructions
-In order to use this mod, download the repository and extract it to the cod4's ``/mods/sr_battleroyale`` directory. Then go to the ``scripts`` directory and start the ``build_iwds.sh`` to build the IWDs and the ``build.sh`` to build the mod.ff.
+## Installation
+Download the repository and extract it to your CoD4 ``/mods/sr_battleroyale`` directory. Then navigate to ``scripts`` and run ``build_iwds.sh`` to build the IWDs, followed by ``build.sh`` to compile mod.ff.
 
-## Building (Windows)
+## Requirements
+Before running the mod, install ``SR-CoD4x`` with ``gsclib`` and set up a ``MariaDB`` database. Once all three are in place, launch the server with start.sh.
+
+## Building
 _Pre-Requisites:_
 1. [CoD4 Mod Tools](https://github.com/promod/CoD4-Mod-Tools)
+
+## Server
+1. [SR-CoD4x](https://github.com/Iswenzz/SR-CoD4x)
+2. [gsclib](https://github.com/Iswenzz/gsclib)
 
 ## Contributors:
 ***Note:*** If you would like to contribute to this repository, feel free to send a pull request, and I will review your code. Also feel free to post about any problems that may arise in the issues section of the repository.

@@ -1,5 +1,5 @@
-#include battleroyale\utils\_common;
-#include battleroyale\sys\_events;
+#include sr\utils\_common;
+#include sr\sys\_events;
 
 start()
 {
@@ -8,6 +8,9 @@ start()
 	printLn("^5iswenzz.com" );
 	printLn("^5===================================");
 
+	GSCLIB_Init();
+
+	level.scriptusage = debug_scriptusage();
 	level.script = toLower(getDvar("mapname"));
 	level.gametype = toLower(getDvar("g_gametype"));
 	level.splitscreen = isSplitScreen();
@@ -77,7 +80,7 @@ CodeCallback_PlayerSpawned()
 		self.psoffsettime = 0;
 		self.died = false;
 
-		self battleroyale\game\_callbacks::playerSpawn();
+		self battleroyale\core\_callbacks::playerSpawn();
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
@@ -100,7 +103,7 @@ CodeCallback_PlayerSpectator()
 		self.statusicon = "";
 		self.spectatorclient = -1;
 
-		self battleroyale\game\_callbacks::playerSpectator();
+		self battleroyale\core\_callbacks::playerSpectator();
 
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
@@ -145,7 +148,9 @@ CodeCallback_PlayerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 
-	self battleroyale\game\_callbacks::playerConnect();
+	self sr\sys\_admins::connection();
+	self sr\core\_settings::init();
+	self battleroyale\core\_callbacks::playerConnect();
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
@@ -159,9 +164,11 @@ CodeCallback_PlayerConnect()
 	{
 		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
 			self thread [[level.events["connected"][i]]]();
-		self battleroyale\game\_teams::setSpectator();
+		self sr\core\_teams::setSpectator();
 	}
 	else self eventSpawn();
+
+	comPrintLn(fmt("^5[Player] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
 	self.pers["connected"] = true;
 	self notify("connecting_sync");
@@ -171,7 +178,7 @@ CodeCallback_PlayerDisconnect()
 {
 	self notify("disconnect");
 
-	self battleroyale\game\_callbacks::playerDisconnect();
+	self battleroyale\core\_callbacks::playerDisconnect();
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
 		self thread [[level.events["disconnect"][i]]]();
@@ -184,7 +191,7 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 	if (isDefined(self.godmode))
 		return;
 
-	self battleroyale\game\_callbacks::playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
+	self battleroyale\core\_callbacks::playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
 
 	for (i = 0; isDefined(level.events["damage"]) && i < level.events["damage"].size; i++)
 		self thread [[level.events["damage"][i]]](eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
@@ -198,7 +205,7 @@ CodeCallback_PlayerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon
 	self.sessionstate = "dead";
 	self.died = true;
 
-	self battleroyale\game\_callbacks::playerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
+	self battleroyale\core\_callbacks::playerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
 
 	for (i = 0; isDefined(level.events["killed"]) && i < level.events["killed"].size; i++)
 		self thread [[level.events["killed"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);

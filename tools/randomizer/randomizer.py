@@ -47,7 +47,7 @@ class Randomize:
 
             [type, asset] = self.getAsset()
             entry = (
-                'battleroyale\game\_api::createEntity("{}", ({}, {}, {}));\n'.format(
+                'sr\api\_battleroyale::createEntity("{}", ({}, {}, {}));\n'.format(
                     asset, origin[0], origin[1], origin[2]
                 )
             )

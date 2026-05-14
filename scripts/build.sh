@@ -66,7 +66,7 @@ cp -rv xmodelsurfs "$GAME/raw"
 
 # Shaders
 cd "$GAME/raw/shader_bin"
-./shader_tool sr_triangles_f82c030abb
+./shader_tool sr_blur_1d17d24e40 sr_edge_0cef709725 sr_glitch_06d9976ae5 sr_psy_glass_11d46ca201 sr_screen_6d3cd4cb sr_shake_9b04eed583 sr_translate_2fb01cf446 sr_vhs_e7a0beb465 sr_zoom_80ced10fcc sr_psy_edge_b3874b4a78 sr_mirror_52ec30e684 sr_volumetric_clouds_373849a5fc sr_hexagon_83d54f6fd6 sr_aurora_160a9bd1d3 sr_space_curvature_80a4ee4278 sr_grid_dcfcfec4a3 sr_spray_ec8ef9ff77 sr_loader_98d163c731 sr_bokeh_72a1bf12fc sr_triangles_f82c030abb
 
 # Compile
 cd "$GAME/bin"
