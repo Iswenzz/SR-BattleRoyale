@@ -1,7 +1,5 @@
 # SR BattleRoyale
 
-[![License](https://img.shields.io/github/license/Iswenzz/SR-BattleRoyale?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/SR-BattleRoyale/blob/master/LICENSE)
-
 ![](https://i.imgur.com/HOTSmrJ.png)
 
 Call of Duty 4 Battle Royale is a first-person shooter game that engages in survival, exploration and much more. It is a strong
