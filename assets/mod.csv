@@ -3,8 +3,6 @@ rawfile,cleanup.cfg
 rawfile,info/bullet_penetration_mp
 rawfile,maps/mp/gametypes/_gametypes.txt
 rawfile,maps/mp/gametypes/battleroyale.txt
-rawfile,maps/mp/gametypes/cj.txt
-rawfile,maps/mp/gametypes/deathrun.txt
 rawfile,maps/mp/gametypes/war.txt
 
 // Animation
@@ -104,7 +102,6 @@ material,arrow_s
 material,arrow_w
 material,caulk
 material,crosshair
-material,default
 material,faction_128_arab_gold
 material,faction_128_sas_black
 material,gfx_exp_spark
