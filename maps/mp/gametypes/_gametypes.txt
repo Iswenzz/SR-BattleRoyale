@@ -1,5 +1,6 @@
-battleroyale
+speedrun
 deathrun
+battleroyale
 cj
 dm
 dom
