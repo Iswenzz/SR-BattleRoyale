@@ -2,11 +2,11 @@
 
 ![](https://i.imgur.com/HOTSmrJ.png)
 
-Call of Duty 4 Battle Royale is a first-person shooter game that engages in survival, exploration and much more. It is a strong
-last man standing gameplay that requires you to search for equipment and weaponary which will help you defeat enemies.
-Call of Duty 4's battle royale is based off of many other games such as H1Z1, PlayerUnknown's Battlegrounds, and Fortnite!
+Call of Duty 4 Battle Royale is a first-person shooter that blends survival, exploration, and intense last-man-standing gameplay. Search the map for equipment and weaponry to gain the edge over your enemies — every match is a fight for survival. Built on top of [SR-Core](https://github.com/Iswenzz/SR-Core), the mod draws inspiration from titles like H1Z1, PlayerUnknown's Battlegrounds, and Fortnite.
 
-This mod comes with it's own custom map called, ``MP_BR_BLACKOUT``, which is designed for over 30 players. This map utilizes the entirety of the Call of Duty 4 game engine, and pushes the game to it's limits.
+The mod comes with its own custom map, ``MP_BR_BLACKOUT``, designed for over 30 players. The map pushes the Call of Duty 4 engine to its limits, making full use of everything the engine has to offer.
+
+Each match begins with all players aboard a plane, ready to drop into the map by parachute. Once on the ground, you must scavenge for weapons and gear — grenades, smokes, flashbangs, med kits, and bandages are all scattered across the map. After some time an objective point appears on the minimap, which can also be opened as a full-screen map. The safe zone progressively closes in, and staying outside it will cost you health. The last player standing wins.
 
 ## Documentation
 * [API](https://github.com/Iswenzz/SR-Dev/blob/master/docs/battleroyale.md)
