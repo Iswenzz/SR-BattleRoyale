@@ -23,6 +23,7 @@ main()
 precache()
 {
 	precacheMenu("main/main_mp");
+	precacheMenu("main/sr_about");
 	precacheMenu("commands/wm_quickmessage");
 	precacheMenu("commands/quickcommands");
 	precacheMenu("commands/quickresponses");

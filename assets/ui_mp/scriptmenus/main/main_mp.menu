@@ -60,18 +60,32 @@
 		itemdef
 		{
 			name			"aboutText"
-			rect			11 291 360 108 0 0
+			rect			11 295 360 108 0 0
 			style			1
 			visible			1
-			exp				text("@SR_BATTLEROYALE_DESC")
 			type			0
-			textscale		0.23
+			text			"^7The popular battle royale gamemode from other games such as \nPlayer Unknown's Battlegrounds, Fortnite, H1Z1, recreated on Call of Duty 4!\n\nFor more info, ^2click Read More^7."
+			textscale		0.3
 			textstyle		0
 			textalign		0
 			textalignx		6
 			textaligny		15
 			decoration
 		}
+
+		#undef LAYOUT_X_START
+		#define LAYOUT_X_START 		300
+
+		#undef LAYOUT_Y_START
+		#define LAYOUT_Y_START 		375
+
+		#undef LAYOUT_SIZE_X
+		#define LAYOUT_SIZE_X		65
+
+		#undef BUTTON_SIZE_X
+		#define BUTTON_SIZE_X		65
+
+		SR_BUTTON_LEFT(1, "Read more", open about_page_1; close main_mp;, 1)
 
 		SR_FRAME_SECONDARY(375, 35, 254, 364)
 		SR_FRAME_HEADER(dvarString("mapname"), 378, 37, 250, 25, 6)

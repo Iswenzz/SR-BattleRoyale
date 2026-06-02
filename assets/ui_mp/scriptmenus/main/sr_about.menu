@@ -1,0 +1,206 @@
+#define LAYOUT_NAME             "about"
+#define LAYOUT_X_START          0
+#define LAYOUT_Y_START          100
+#define LAYOUT_SIZE_X           520
+#define LAYOUT_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+#define LAYOUT_VERTICAL_ALIGN   VERTICAL_ALIGN_CENTER
+
+#include "ui/components/base.inc"
+
+#define ABOUT_X             120
+#define ABOUT_Y             90
+#define ABOUT_W             400
+#define ABOUT_H             270
+#define ABOUT_HEADER_H      22
+#define ABOUT_BORDER_COLOR  0.5 0.1 1 1
+
+#define ABOUT_WINDOW(menuname) \
+    menuDef \
+    { \
+        name        menuname \
+        rect        0 0 640 480 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+        style       WINDOW_STYLE_EMPTY \
+        blurWorld   7.0 \
+        visible     0 \
+        onEsc       { close self; } \
+        onOpen      { focusFirst; } \
+        foreColor   1 1 1 1 \
+        focusColor  1 1 1 1 \
+        itemDef \
+        { \
+            name        "background" \
+            rect        0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN \
+            style       1 \
+            backcolor   0 0 0 0.6 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "window" \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   0 0 0 0.3 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "header" \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_HEADER_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   0 0 0 0.5 \
+            visible     1 \
+            decoration \
+        } \
+        itemDef \
+        { \
+            name        "headerBorder" \
+            rect        ABOUT_X (ABOUT_Y + ABOUT_HEADER_H) ABOUT_W 2 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style       1 \
+            backcolor   ABOUT_BORDER_COLOR \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_TITLE(title) \
+        itemDef \
+        { \
+            name        "title" \
+            text        title \
+            type        0 \
+            rect        ABOUT_X ABOUT_Y ABOUT_W ABOUT_HEADER_H HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            textfont    1 \
+            textscale   0.35 \
+            textalign   ITEM_ALIGN_MIDDLE_CENTER \
+            forecolor   1 1 1 1 \
+            textstyle   3 \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_TEXT(content) \
+        itemDef \
+        { \
+            name        "page_text" \
+            text        content \
+            type        0 \
+            rect        (ABOUT_X + 10) (ABOUT_Y + ABOUT_HEADER_H + 20) (ABOUT_W - 20) (ABOUT_H - ABOUT_HEADER_H - 50) HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            textfont    1 \
+            textscale   0.30 \
+            textalign   0 \
+            forecolor   0.8 0.8 0.8 1 \
+            textstyle   3 \
+            visible     1 \
+            decoration \
+        }
+
+#define ABOUT_COUNTER(current, total) \
+        itemDef \
+        { \
+            name            "pageindex" \
+            rect            (ABOUT_X + ABOUT_W / 2 - 5) (ABOUT_Y + ABOUT_H - 32) 20 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_EMPTY \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            textalign       ITEM_ALIGN_MIDDLE_CENTER \
+            textaligny      4 \
+            visible         1 \
+            text            current " / " total \
+            textscale       0.35 \
+            decoration \
+        }
+
+#define ABOUT_PREV(target) \
+        itemDef \
+        { \
+            name            "prev" \
+            rect            (ABOUT_X + ABOUT_W / 2 - 40) (ABOUT_Y + ABOUT_H - 30) 30 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_FILLED \
+            text            "<" \
+            textalign       ITEM_ALIGN_CENTER \
+            textalignx      0 \
+            textaligny      26 \
+            type            ITEM_TYPE_BUTTON \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            visible         1 \
+            mouseEnter \
+            { \
+                play "mouse_over"; \
+            } \
+            action \
+            { \
+                play "mouse_click"; \
+                close self; open target; \
+            } \
+        }
+
+#define ABOUT_NEXT(target) \
+        itemDef \
+        { \
+            name            "next" \
+            rect            (ABOUT_X + ABOUT_W / 2 + 20) (ABOUT_Y + ABOUT_H - 30) 30 30 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP \
+            style           WINDOW_STYLE_FILLED \
+            text            ">" \
+            textalign       ITEM_ALIGN_CENTER \
+            textalignx      0 \
+            textaligny      26 \
+            type            ITEM_TYPE_BUTTON \
+            textstyle       ITEM_TEXTSTYLE_SHADOWED \
+            visible         1 \
+            mouseEnter \
+            { \
+                play "mouse_over"; \
+            } \
+            action \
+            { \
+                play "mouse_click"; \
+                close self; open target; \
+            } \
+        }
+
+#define ABOUT_CLOSE \
+        execKeyInt 13   { scriptmenuresponse "enter"; } \
+        execKeyInt 32   { scriptmenuresponse "space"; } \
+    }
+
+{
+    ABOUT_WINDOW("about_page_1")
+	ABOUT_TITLE("Welcome")
+	ABOUT_TEXT("^7Welcome to ^5SR BattleRoyale^7, a first-person survival mod for ^5Call of Duty 4^7\ndrawing inspiration from ^5H1Z1^7, ^5PUBG^7, and ^5Fortnite^7.\n\n^7Every match begins aboard a ^5plane^7. Choose your drop point and parachute\ndown into the map. Once on the ground, scavenge for ^5weapons^7 and ^5gear^7,\ngrenades, smokes, flashbangs, ^5med kits^7, and bandages are scattered\nacross the map. Find equipment fast or you won't last long.\n\n^7After some time, an ^5objective point^7 appears on the minimap, which can\nalso be opened as a ^5full-screen map^7 to plan your next move.\n\n^7The ^5safe zone^7 progressively closes in, staying outside it will drain\nyour health. Adapt, reposition, outlast everyone else.\n\n^7The ^5last player standing^7 wins.")
+	ABOUT_COUNTER("1", "5")
+	ABOUT_PREV(about_page_1)
+	ABOUT_NEXT(about_page_2)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_2")
+	ABOUT_TITLE("Commands")
+	ABOUT_TEXT("^7A large set of commands is available to all players at any time.\nType ^2!help^7 in chat to browse the full list. Here are the most useful ones:\n\n^2!pm ^7Send a private message directly to another player on the server.\n^2!graphics ^7Re-enable common graphics settings if they were disabled.\n^2!fps ^7Toggle fullbright mode for improved frame rate.\n^2!fov ^7Adjust your field of view to your preference.\n^2!video ^7Request a video to be played on the in-game screen.")
+	ABOUT_COUNTER("2", "5")
+	ABOUT_PREV(about_page_1)
+	ABOUT_NEXT(about_page_3)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_3")
+	ABOUT_TITLE("IW3SR")
+	ABOUT_TEXT("^5IW3SR^7 is a custom CoD4 client.\nStrongly recommended for all players and essential for the smoothest\nexperience on custom movement modes like Q3, Q3CPM, CS, and Portal.\n\n^5Velocity meter: ^7Real-time velocity display showing your exact speed at\n^7all times, essential for learning and optimizing movement.\n^5CGAZ: ^7Visualizes strafe zones on screen, showing the optimal angle\n^7window to maximize acceleration during every airborne moment.\n^5Bhop script: ^7Optimized bunny hop input handling built directly into\n^7the client for consistent jumps without timing variance.\n^5KMOV: ^7Fully customizable dynamic HUD displays for movement data.\n^5Built-in browser: ^7Watch videos in-game without alt-tabbing.\n\n^7Download and source available at ^2github.com/Iswenzz/IW3SR")
+	ABOUT_COUNTER("3", "5")
+	ABOUT_PREV(about_page_2)
+	ABOUT_NEXT(about_page_4)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_4")
+	ABOUT_TITLE("Open Source")
+	ABOUT_TEXT("^7The entire SR project is open source and community maintained.\nEvery part of the server, client, and tooling is publicly available\nfor anyone to explore, learn from, or contribute to.\n\n^7The full codebase is hosted on GitHub. You can browse the source,\nopen issues, suggest features, or submit pull requests directly at\n^2github.com/Iswenzz\n\n^7Contributions of all kinds are welcome and appreciated.\n^7The project grows because of the community. If you have skills\nand want to contribute, the door is open.")
+	ABOUT_COUNTER("4", "5")
+	ABOUT_PREV(about_page_3)
+	ABOUT_NEXT(about_page_5)
+	ABOUT_CLOSE
+
+    ABOUT_WINDOW("about_page_5")
+	ABOUT_TITLE("Community")
+	ABOUT_TEXT("^7An active community of players, speedrunners, and mappers is\nalways online. Whether you are looking for help, want to share a run,\nor just want to follow the latest updates, come join us.\n\nThe ^5Discord^7 is the heart of the community. It is the best place\nto ask questions, get feedbacks, report bugs, and stay up to date with every\nnew map release, mode update, and server announcement.\n\n^5Website: ^2sr-speedrun.com\n^5Discord: ^2discord.gg/76aHfGF\n^5GitHub: ^2github.com/Iswenzz")
+	ABOUT_COUNTER("5", "5")
+	ABOUT_PREV(about_page_4)
+	ABOUT_NEXT(about_page_5)
+	ABOUT_CLOSE
+}

@@ -33,6 +33,7 @@ menufile,ui_mp/scriptmenus/commands/quickstatements.menu
 menufile,ui_mp/scriptmenus/commands/wm_quickmessage.menu
 menufile,ui_mp/scriptmenus/controls/controls_multi.menu
 menufile,ui_mp/scriptmenus/main/main_mp.menu
+menufile,ui_mp/scriptmenus/main/sr_about.menu
 menufile,ui_mp/scriptmenus/misc/clientcmd.menu
 menufile,ui_mp/scriptmenus/misc/endofgame.menu
 menufile,ui_mp/scriptmenus/misc/muteplayer.menu
