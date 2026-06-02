@@ -36,6 +36,8 @@ precache()
 	precacheMenu("misc/endofgame");
 	precacheMenu("misc/scoreboard");
 	precacheMenu("misc/muteplayer");
+
+	precacheMenu("about_page_1");
 }
 
 menu_Map(arg)
