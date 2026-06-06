@@ -181,9 +181,9 @@ serverDvars()
 	);
 	wait 0.05;
 	self setClientDvars(
+		"cef_url", "https://sr-speedrun.com/media",
 		"fx_enable", 1,
 		"ragdoll_enable", 1,
-		"cg_drawThroughWalls", 0,
-		"ui_uav_client", 0
+		"cg_drawThroughWalls", 0
 	);
 }
