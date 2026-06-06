@@ -4,6 +4,7 @@ source .cod4env
 # Cleanup
 cd "$MOD"
 rm -v mod.ff
+cp -rv maps/mp/gametypes "$GAME/raw/maps/mp"
 cp -rv devmap/* "$GAME/raw"
 
 # SR
