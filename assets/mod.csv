@@ -7,6 +7,44 @@ rawfile,maps/mp/gametypes/deathrun.txt
 rawfile,maps/mp/gametypes/battleroyale.txt
 rawfile,maps/mp/gametypes/cj.txt
 
+// Devmap
+rawfile,battleroyale/_dvar.gsc
+rawfile,battleroyale/_game.gsc
+rawfile,battleroyale/_mod.gsc
+rawfile,braxi/_common.gsc
+rawfile,braxi/_dvar.gsc
+rawfile,braxi/_mod.gsc
+rawfile,braxi/_rank.gsc
+rawfile,maps/mp/gametypes/war.gsc
+rawfile,maps/mp/gametypes/_callbacksetup.gsc
+rawfile,maps/mp/gametypes/_weapons.gsc
+rawfile,sr/api/_battleroyale.gsc
+rawfile,sr/api/_deathrun.gsc
+rawfile,sr/api/_map.gsc
+rawfile,sr/api/_player.gsc
+rawfile,sr/api/_q3.gsc
+rawfile,sr/api/_speedrun.gsc
+rawfile,sr/core/_callbacks.gsc
+rawfile,sr/core/_debug.gsc
+rawfile,sr/core/_map.gsc
+rawfile,sr/core/_match.gsc
+rawfile,sr/core/_menus.gsc
+rawfile,sr/core/_perks.gsc
+rawfile,sr/core/_run.gsc
+rawfile,sr/core/_teams.gsc
+rawfile,sr/core/_trigger.gsc
+rawfile,sr/fx/_trigger.gsc
+rawfile,sr/huds/_speedrun.gsc
+rawfile,sr/sys/_dvar.gsc
+rawfile,sr/sys/_events.gsc
+rawfile,sr/sys/_scoreboard.gsc
+rawfile,sr/utils/_common.gsc
+rawfile,sr/utils/_hud.gsc
+rawfile,sr/utils/_math.gsc
+rawfile,sr/_mod.gsc
+rawfile,surf/_mod.gsc
+rawfile,surf/_util.gsc
+
 // Animation
 rawfile,animtrees/multiplayer.atr
 rawfile,mp/playeranim.script

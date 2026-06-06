@@ -1,3 +1,6 @@
 [submodule "sr"]
 	path = sr
 	url = https://github.com/Iswenzz/SR-Core
+[submodule "devmap"]
+	path = devmap
+	url = git@github.com:Iswenzz/SR-Devmap
