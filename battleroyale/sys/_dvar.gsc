@@ -1,4 +1,5 @@
 #include sr\sys\_dvar;
+#include sr\utils\_common;
 
 main()
 {
@@ -21,6 +22,7 @@ main()
 	addDvar("demos", "sr_demos", 1, 0, 1, "int");
 	addDvar("demos_timeout", "sr_demos_timeout", 120, 20, 1200, "int");
 	addDvar("map_edition", "sr_map_edition", 0, 0, 1, "int");
+	addDvar("seed", "sr_seed", generateToken(10), 0, 0, "string");
 
 	setDvar("g_friendlyPlayerCanBlock", 0);
 	setDvar("g_deadChat", 1);
