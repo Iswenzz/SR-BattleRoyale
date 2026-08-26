@@ -9,6 +9,7 @@ rm -v mod.ff
 cd "$SR/assets"
 cp -rv deffiles "$GAME"
 cp -rv shader_bin "$GAME/raw"
+cp -rv statemaps "$GAME/raw"
 cp -rv techniques "$GAME/raw"
 cp -rv techsets "$GAME/raw"
 cp -v techsets/* "$GAME/raw/techsets/sm2"
@@ -18,13 +19,16 @@ cd "$MOD/assets"
 cp -v mod.csv "$GAME/zone_source"
 cp -rv deffiles "$GAME"
 cp -rv shader_bin "$GAME/raw"
+cp -rv statemaps "$GAME/raw"
 cp -rv techniques "$GAME/raw"
 cp -rv techsets "$GAME/raw"
 cp -v techsets/* "$GAME/raw/techsets/sm2"
 
 # Shaders
 cd "$GAME/raw/shader_bin"
-./shader_tool sr_blur_1d17d24e40 sr_edge_0cef709725 sr_glitch_06d9976ae5 sr_psy_glass_11d46ca201 sr_screen_6d3cd4cb sr_shake_9b04eed583 sr_translate_2fb01cf446 sr_vhs_e7a0beb465 sr_zoom_80ced10fcc sr_psy_edge_b3874b4a78 sr_mirror_52ec30e684 sr_volumetric_clouds_373849a5fc sr_hexagon_83d54f6fd6 sr_aurora_160a9bd1d3 sr_space_curvature_80a4ee4278 sr_grid_dcfcfec4a3 sr_spray_ec8ef9ff77 sr_loader_98d163c731 sr_bokeh_72a1bf12fc sr_triangles_f82c030abb
+for shader in portal_view q3_envmap sr_aurora sr_blur sr_bokeh sr_edge sr_glitch sr_grid sr_hexagon sr_loader sr_mirror sr_psy_edge sr_psy_glass sr_screen sr_shake sr_space_curvature sr_spray sr_translate sr_triangles sr_vhs sr_volumetric_clouds sr_zoom; do
+	./shader_tool "$shader"
+done
 
 # Compile
 cd "$GAME/bin"
