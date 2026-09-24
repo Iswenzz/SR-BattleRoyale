@@ -1,11 +1,11 @@
 #!/bin/bash
-source .cod4env
+source "$(dirname "$0")/.cod4env"
 
 # Cleanup
 cd "$MOD"
-rm -v _images.iwd
-rm -v _sounds.iwd
-rm -v _weapons.iwd
+rm -fv _images.iwd
+rm -fv _sounds.iwd
+rm -fv _weapons.iwd
 
 # SR
 cd "$SR/assets"

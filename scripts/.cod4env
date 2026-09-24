@@ -1,6 +1,7 @@
 #!/bin/bash
 export NAME=sr_battleroyale
-export GAME=$(realpath "../../..")
+SCRIPTS=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
+export GAME=$(realpath "$SCRIPTS/../../..")
 export MOD="$GAME/mods/$NAME"
 export SR="$MOD/sr"
 

@@ -119,7 +119,13 @@ endSpectate()
 
 voteNextMap()
 {
+	// randomizeMaps leaves the list empty when the rotation has fewer maps than it picks.
 	maps = level.randomizedMaps;
+	if (!maps.size)
+		maps = level.rotation;
+	if (!maps.size)
+		maps[0] = level.map;
+
 	autoPick = maps[randomInt(maps.size)];
 
 	if (level.dvar["map_vote"])

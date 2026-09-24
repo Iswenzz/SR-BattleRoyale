@@ -1,9 +1,9 @@
 #!/bin/bash
-source .cod4env
+source "$(dirname "$0")/.cod4env"
 
 # Cleanup
 cd "$MOD"
-rm -v mod.ff
+rm -fv mod.ff
 cp -rv maps/mp/gametypes "$GAME/raw/maps/mp"
 cp -rv devmap/* "$GAME/raw"
 
