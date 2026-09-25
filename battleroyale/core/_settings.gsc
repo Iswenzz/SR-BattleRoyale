@@ -14,7 +14,7 @@ main()
 	settings(2, "hud_xp", "XP Bar", 1605, false, ::update_hudXP, ::toggle_hudXP);
 	settings(3, "hud_2D", "Draw 2D", 1610, true, ::update_hud2D, ::toggle_hud2D);
 	settings(4, "player_voice", "Voice chat", 1620, true, ::update_playerVoice, ::toggle_playerVoice);
-	settings(5, "player_proximity", "Voice proximity", 1623, false, ::update_playerProximity, ::toggle_playerProximity);
+	settings(5, "player_proximity", "Voice proximity", 1623, true, ::update_playerProximity, ::toggle_playerProximity);
 	settings(6, "player_radio", "Radio", 1622, true, ::update_playerRadio, ::toggle_playerRadio);
 	settings(7, "gfx_fov", "FOV Scale", 2630, 1000, ::update_gfxFOV, ::toggle_gfxFOV);
 	settings(8, "gfx_fullbright", "Fullbright", 1602, false, ::update_gfxFullbright, ::toggle_gfxFullbright);
