@@ -1,175 +1,105 @@
-#define LAYOUT_NAME				"main"
-#define LAYOUT_TEXT_OFFSET_X 	6
-#define HEADER_X_START			75
-#define HEADER_SIZE_X			100
-#define HEADER_X_SPACING		101
-
 #include "ui/components/base.inc"
+
+#define MAIN_PLAY				scriptMenuResponse "autoassign"; close main_mp;
+#define MAIN_SPECTATOR			scriptMenuResponse "spectator"; close main_mp;
+#define MAIN_CONTROLS			open main_controls; close main_mp;
+#define MAIN_SETTINGS			open main_options; open sr_settings; close main_mp;
+#define MAIN_QUIT				open exit_popmenu;
+#define MAIN_ABOUT				open about_page_1; close main_mp;
+
+// One stat on a row: label on the left in the muted white, value on the right.
+#define MAIN_STAT(y, label, value) \
+	RAIL_TEXT(439, y, 190, 40, label, 0.28, ITEM_ALIGN_MIDDLE_LEFT, 8, RAIL_MUTED) \
+	RAIL_TEXT(439, y, 190, 40, value, 0.3, ITEM_ALIGN_MIDDLE_RIGHT, -8, RAIL_WHITE)
+
+#define MAIN_SHADER(x, y, w, h, materialArg, vis) \
+	itemDef \
+	{ \
+		rect			x y w h SR_ALIGN_TOP_SUBLEFT \
+		style			WINDOW_STYLE_SHADER \
+		background		materialArg \
+		visible			vis \
+		decoration \
+	}
 
 {
 	menuDef
 	{
-		SR_WINDOW("main_mp")
+		name			"main_mp"
+		rect			SR_WINDOW_RECT
+		focusColor		1 1 1 1
 
-		focusColor		COLOR_FOCUSED
+		onOpen
+		{
+			setLocalVarInt ui_rail_hover 0;
+		}
 
 		onESC
 		{
 			close self;
 		}
 
-		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
-		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)
-		HEADER(4, "Controls", open main_controls; close main_mp;)
-		HEADER(5, "Settings", open main_options; open sr_settings; close main_mp;)
-		HEADER(6, "Quit", open exit_popmenu;)
+		RAIL_FILL(0, 0, SR_WINDOW_W, SR_WINDOW_H, SR_WINDOW_BACKCOLOR)
 
-		SR_FRAME(11, 35, 360, 225)
-		SR_FRAME_HEADER("Stats", 14, 37, 357, 25, 6)
+		RAIL_PANEL(178, 410, "SR ^5BATTLEROYALE")
+		RAIL_ENTRY_PRIMARY(1, 10, 58, 158, 28, "Play", MAIN_PLAY)
+		RAIL_ENTRY(2, 10, 90, 158, 28, "Spectator", MAIN_SPECTATOR)
+		RAIL_ENTRY(3, 10, 122, 158, 28, "Controls", MAIN_CONTROLS)
+		RAIL_ENTRY(4, 10, 154, 158, 28, "Settings", MAIN_SETTINGS)
+		RAIL_RULE(10, 362, 158)
+		RAIL_ENTRY(8, 10, 372, 158, 28, "Quit", MAIN_QUIT)
 
-		#undef LAYOUT_SIZE_X
-		#define LAYOUT_SIZE_X		250
+		// Player
+		SR_FRAME(192, 10, 438, 62)
+		RAIL_FILL(192, 10, 2, 62, RAIL_PURPLE)
+		itemDef
+		{
+			name			"rankIcon"
+			rect			204 21 40 40 SR_ALIGN_TOP_SUBLEFT
+			style			WINDOW_STYLE_SHADER
+			exp				material(tablelookup("mp/rankIconTable.csv", 0, stat(2350), stat(2326) + 1))
+			visible			1
+			decoration
+		}
+		RAIL_TEXT(254, 16, 300, 26, dvarString("name"), 0.4, ITEM_ALIGN_MIDDLE_LEFT, 0, RAIL_WHITE)
+		RAIL_TEXT(254, 42, 300, 20, dvarString("sr_admin_role"), 0.26, ITEM_ALIGN_MIDDLE_LEFT, 0, RAIL_MUTED)
+		MAIN_SHADER(576, 31, 20, 20, "speedrunner_logo", when(stat(2001) >= 10))
+		MAIN_SHADER(602, 31, 20, 20, "vip_status", when(stat(2000)))
 
-		#undef LAYOUT_SIZE_Y
-		#define LAYOUT_SIZE_Y		20
+		// Map
+		SR_FRAME(192, 82, 238, 190)
+		SR_FRAME_HEADER(dvarString("mapname"), 195, 84, 234, 25, 6)
+		MAIN_SHADER(195, 109, 234, 161, "$levelBriefing", 1)
 
-		#undef LAYOUT_X_START
-		#define LAYOUT_X_START 		14
+		// Stats
+		SR_FRAME_SECONDARY(438, 82, 192, 190)
+		SR_FRAME_HEADER("Stats", 441, 84, 188, 25, 6)
+		MAIN_STAT(110, "Kills", ("" + stat(2303)))
+		MAIN_STAT(150, "Deaths", ("" + stat(2305)))
+		MAIN_STAT(190, "Accuracy", ("" + stat(2325)))
+		MAIN_STAT(230, "Wins", ("" + stat(2316)))
+		RAIL_FILL(447, 150, 174, 1, RAIL_LINE)
+		RAIL_FILL(447, 190, 174, 1, RAIL_LINE)
+		RAIL_FILL(447, 230, 174, 1, RAIL_LINE)
 
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START 		65
-
-		#undef LAYOUT_Y_SPACING
-		#define LAYOUT_Y_SPACING	22
-
-		#undef SR_KEY_SIZE_X
-		#define SR_KEY_SIZE_X		280
-
-		#undef SR_VALUE_SIZE_X
-		#define SR_VALUE_SIZE_X		75
-
-		SR_TEXT_KV(1, "Kills", ("" + stat(2303)))
-		SR_TEXT_KV(2, "Deaths", ("" + stat(2305)))
-		SR_TEXT_KV(3, "Accuracy", ("" + stat(2325)))
-		SR_TEXT_KV(4, "Wins", ("" + stat(2316)))
-		SR_TEXT_KV(5, "Time Played", dvarString("sr_info_timePlayed"))
-
-		SR_FRAME(11, 266, 360, 133)
-		SR_FRAME_HEADER("About", 14, 268, 356, 25, 6)
-
-		itemdef
+		// About
+		SR_FRAME(192, 282, 438, 120)
+		SR_FRAME_HEADER("About", 195, 284, 434, 25, 6)
+		itemDef
 		{
 			name			"aboutText"
-			rect			11 295 360 108 0 0
-			style			1
-			visible			1
-			type			0
-			text			"^7The popular battle royale gamemode from other games such as \nPlayer Unknown's Battlegrounds, Fortnite, H1Z1, recreated on Call of Duty 4!\n\nFor more info, ^2click Read More^7."
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		15
-			decoration
-		}
-
-		#undef LAYOUT_X_START
-		#define LAYOUT_X_START 		300
-
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START 		375
-
-		#undef LAYOUT_SIZE_X
-		#define LAYOUT_SIZE_X		65
-
-		#undef BUTTON_SIZE_X
-		#define BUTTON_SIZE_X		65
-
-		SR_BUTTON_LEFT(1, "Read more", open about_page_1; close main_mp;, 1)
-
-		SR_FRAME_SECONDARY(375, 35, 254, 364)
-		SR_FRAME_HEADER(dvarString("mapname"), 378, 37, 250, 25, 6)
-
-		itemdef
-		{
-			name			"loadscreen"
-			rect			378 62 250 160 0 0
-			style			3
-			background		"$levelBriefing"
+			rect			202 312 418 60 SR_ALIGN_TOP_SUBLEFT
+			type			ITEM_TYPE_TEXT
+			text			"The popular battle royale gamemode from other games such as Player Unknown's Battlegrounds, Fortnite, H1Z1, recreated on Call of Duty 4!\n\nFor more info, ^2click Read More^7."
+			textfont		UI_FONT_NORMAL
+			textscale		0.26
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_TOP_LEFT
+			forecolor		RAIL_WHITE
+			autowrapped
 			visible			1
 			decoration
 		}
-
-		itemdef
-		{
-			name			"infoPlayer"
-			rect			378 224 250 50 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			decoration
-		}
-
-		itemdef
-		{
-			name			"infoRankIcon"
-			rect			380 233 32 32 0 0
-			exp				material(tablelookup("mp/rankIconTable.csv", 0, stat(2350), stat(2326) + 1))
-			style			3
-			visible			1
-			decoration
-		}
-
-		itemdef
-		{
-			name			"infoRank"
-			rect			414 233 85 32 0 0
-			style			0
-			visible			1
-			type			0
-			exp				text(dvarString("name"))
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		0
-			textaligny		14
-			decoration
-		}
-
-		itemdef
-		{
-			name			"infoRole"
-			rect			414 249 85 32 0 0
-			style			0
-			visible			1
-			type			0
-			exp				text(dvarString("sr_admin_role"))
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		0
-			textaligny		14
-			decoration
-		}
-
-		itemdef
-		{
-			name			"infoVIP"
-			rect			603 233 16 16 0 0
-			background		"vip_status"
-			style			3
-			visible			when((stat(2000)))
-			decoration
-		}
-
-		itemdef
-		{
-			name			"infoSpeedrun"
-			rect			583 233 16 16 0 0
-			background		"speedrunner_logo"
-			style			3
-			visible			when((stat(2001)) >= 10)
-			decoration
-		}
+		RAIL_BUTTON(9, 530, 374, 92, 22, "Read more", 0.26, MAIN_ABOUT)
 	}
 }
